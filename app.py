@@ -124,7 +124,7 @@ with mp_hands.Hands(
                 y_coord_i= int(index_tip.y * image_height)
                 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if not drawing_mode_active:
+                if not drawing_mode_active and handedness=="Left":
                   cv2.putText(image, 'Elif,',
                             (x_coord_i, y_coord_i + 10), 
                             font, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
@@ -139,7 +139,7 @@ with mp_hands.Hands(
                 y_coord_m = int(middle_tip.y * image_height)
                 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if not drawing_mode_active:
+                if not drawing_mode_active and handedness=="Left":
                   cv2.putText(image, 'Emre',
                             (x_coord_m, y_coord_m + 10), 
                             font, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
@@ -153,7 +153,7 @@ with mp_hands.Hands(
                 y_coord_r = int(ring_tip.y * image_height)
                 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if not drawing_mode_active:
+                if not drawing_mode_active and handedness=="Left":
                   cv2.putText(image, 'seni',
                             (x_coord_r, y_coord_r + 10), 
                             font, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
@@ -167,7 +167,7 @@ with mp_hands.Hands(
                 y_coord_p = int(pinky_tip.y * image_height)
                 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if not drawing_mode_active:
+                if not drawing_mode_active and handedness=="Left":
                   cv2.putText(image, 'cok',
                             (x_coord_p, y_coord_p + 10), 
                             font, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
@@ -181,14 +181,14 @@ with mp_hands.Hands(
                 y_coord_t = int(thumb_tip.y * image_height)
                 
                 font = cv2.FONT_HERSHEY_SIMPLEX
-                if not drawing_mode_active:
+                if not drawing_mode_active and handedness=="Left":
                   cv2.putText(image, 'seviyor <3',
                             (x_coord_t, y_coord_t + 10), 
                             font, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
       #for canvas reset it should be rock and roll hand emote
-      if is_finger_open(index_tip.y,index_pip.y) and is_finger_open(pinky_tip.y,pinky_pip.y):
-        if not is_finger_open(middle_tip.y,middle_pip.y) and not is_finger_open(ring_tip.y,ring_pip.y):
-          if handedness == "Right":
+      if is_finger_open(index_tip.y,index_pip.y) and is_finger_open(middle_tip.y,middle_pip.y):
+        if not is_finger_open(pinky_tip.y,pinky_pip.y) and not is_finger_open(ring_tip.y,ring_pip.y):
+            if not drawing_mode_active:
               canvas = np.zeros((720, 1280, 3), dtype=np.uint8) 
               last_x,last_y=0,0
               cv2.putText(image, 'CANVAS CLEARED (ROCK ON!)',
